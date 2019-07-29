@@ -20,7 +20,11 @@ spotify.search({ type: 'track', query: userInput }, function (err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
-console.log(data)
+
+  console.log("\nArtist: " + data.tracks.items[0].artists[0].name)
+  console.log("Song: " + data.tracks.items[0].name)
+  console.log("Link to song: " + data.tracks.items[0].external_urls.spotify)
+  console.log("Album: " + data.tracks.items[0].album.name + "\n")
 });
 
 // Lets get search for a movie with the OMDB API key
