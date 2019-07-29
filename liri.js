@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+var fs = require('fs')
 var keys = require("./keys.js");
 
 var axios = require('axios');
@@ -12,6 +13,35 @@ var userInput = process.argv.slice(3).join(" ");
 
 var spotify = new Spotify(keys.spotify)
 
+//------------------------------------SPOTIFY SEARCH------------------------------------//
+
+var songSearch = function () {
+  spotify.search({ type: 'track', query: userInput }, function (err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
+    }
+    console.log("\nArtist: " + data.tracks.items[0].artists[0].name)
+    console.log("Song: " + data.tracks.items[0].name)
+    console.log("Link to song: " + data.tracks.items[0].external_urls.spotify)
+    console.log("Album: " + data.tracks.items[0].album.name + "\n")
+  });
+}
+//------------------------------------OMDB SEARCH----------------------------------//
+var movieSearch = function () {
+
+  var queryURL = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
+  axios.get(queryURL)
+    .then(function (response) {
+      console.log("\nTitle: " + response.data.Title)
+      console.log("Year: " + response.data.Year)
+      console.log("IMDB Rating: " + response.data.Ratings[0].Value)
+      console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value)
+      console.log("Country: " + response.data.Country)
+      console.log("Language: " + response.data.Language)
+      console.log("Plot: " + response.data.Plot)
+      console.log("Actors: " + response.data.Actors + "\n")
+    })
+}
 //------------------------------------Building the if statements for SPOTIFY search----------------------------------//
 
 if (selection === 'spotify-this-song') {
@@ -28,17 +58,7 @@ if (selection === 'spotify-this-song') {
     })
   } else {
     //------------------------------------SPOTIFY SEARCH------------------------------------//
-
-    spotify.search({ type: 'track', query: userInput }, function (err, data) {
-      if (err) {
-        return console.log('Error occurred: ' + err);
-      }
-
-      console.log("\nArtist: " + data.tracks.items[0].artists[0].name)
-      console.log("Song: " + data.tracks.items[0].name)
-      console.log("Link to song: " + data.tracks.items[0].external_urls.spotify)
-      console.log("Album: " + data.tracks.items[0].album.name + "\n")
-    });
+    songSearch();
   }
 }
 
@@ -65,20 +85,19 @@ if (selection === "movie-this") {
       })
   } else {
 
-    var queryURL = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
-    axios.get(queryURL)
-      .then(function (response) {
-        console.log("\nTitle: " + response.data.Title)
-        console.log("Year: " + response.data.Year)
-        console.log("IMDB Rating: " + response.data.Ratings[0].Value)
-        console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value)
-        console.log("Country: " + response.data.Country)
-        console.log("Language: " + response.data.Language)
-        console.log("Plot: " + response.data.Plot)
-        console.log("Actors: " + response.data.Actors + "\n")
-      })
+    movieSearch();
   }
+
 };
 
 //------------------------------------integrate random text----------------------------------//
 
+if (!selection) {
+  fs.readFile('./random.txt', 'utf8', function (err, data) {
+    if (err) return console.log(err);
+    var rdm = data.split(',');
+    selection = rdm[0];
+    userInput = rdm[1];
+    songSearch();
+  });
+}
