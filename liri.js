@@ -20,6 +20,7 @@ var songSearch = function () {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
+    console.log("\n//-----------------------------SONG-INFO---------------------------//")
     console.log("\nArtist: " + data.tracks.items[0].artists[0].name)
     console.log("Song: " + data.tracks.items[0].name)
     console.log("Link to song: " + data.tracks.items[0].external_urls.spotify)
@@ -32,6 +33,7 @@ var movieSearch = function () {
   var queryURL = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
   axios.get(queryURL)
     .then(function (response) {
+      console.log("\n//-----------------------------MOVIE-INFO---------------------------//")
       console.log("\nTitle: " + response.data.Title)
       console.log("Year: " + response.data.Year)
       console.log("IMDB Rating: " + response.data.Ratings[0].Value)
@@ -51,6 +53,7 @@ if (selection === 'spotify-this-song') {
       if (err) {
         return console.log('Error occurred: ' + err);
       }
+      console.log("\n//-----------------------------SONG-INFO---------------------------//")
       console.log("\nArtist: " + data.tracks.items[2].artists[0].name)
       console.log("Song: " + data.tracks.items[2].name)
       console.log("Link to song: " + data.tracks.items[2].external_urls.spotify)
