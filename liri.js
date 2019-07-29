@@ -13,7 +13,7 @@ var userInput = process.argv.slice(3).join(" ");
 
 var spotify = new Spotify(keys.spotify)
 
-//------------------------------------SPOTIFY SEARCH------------------------------------//
+//------------------------------------SPOTIFY Constructor------------------------------------//
 
 var songSearch = function () {
   spotify.search({ type: 'track', query: userInput }, function (err, data) {
@@ -26,7 +26,7 @@ var songSearch = function () {
     console.log("Album: " + data.tracks.items[0].album.name + "\n")
   });
 }
-//------------------------------------OMDB SEARCH----------------------------------//
+//------------------------------------OMDB Constructor----------------------------------//
 var movieSearch = function () {
 
   var queryURL = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
@@ -57,7 +57,6 @@ if (selection === 'spotify-this-song') {
       console.log("Album: " + data.tracks.items[2].album.name + "\n")
     })
   } else {
-    //------------------------------------SPOTIFY SEARCH------------------------------------//
     songSearch();
   }
 }
@@ -67,24 +66,12 @@ if (selection === 'spotify-this-song') {
 
 if (selection === "movie-this") {
 
-  //------------------------------------Start with no userInput------------------------------------//
+  //------------------------------------If/Else for Movie Search------------------------------------//
 
   if (!userInput) {
-    var queryURL = "http://www.omdbapi.com/?t=mr.nobody&y=&plot=short&apikey=trilogy";
-    axios.get(queryURL)
-      .then(function (response) {
-        console.log("\nTitle: " + response.data.Title)
-        console.log("Year: " + response.data.Year)
-        console.log("IMDB Rating: " + response.data.Ratings[0].Value)
-        console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value)
-        console.log("Country: " + response.data.Country)
-        console.log("Language: " + response.data.Language)
-        console.log("Plot: " + response.data.Plot)
-        console.log("Actors: " + response.data.Actors + "\n")
-
-      })
+    userInput = 'Mr. Nobody';
+    movieSearch();
   } else {
-
     movieSearch();
   }
 
