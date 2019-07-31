@@ -53,11 +53,18 @@ if (selection === 'spotify-this-song') {
       if (err) {
         return console.log('Error occurred: ' + err);
       }
-      console.log("\n//-----------------------------SONG-INFO---------------------------//")
-      console.log("\nArtist: " + data.tracks.items[2].artists[0].name)
-      console.log("Song: " + data.tracks.items[2].name)
-      console.log("Link to song: " + data.tracks.items[2].external_urls.spotify)
-      console.log("Album: " + data.tracks.items[2].album.name + "\n")
+
+      for(var i=0;i<data.tracks.items.length;i++)
+      {
+        if (data.tracks.items[i].artists[0].name==="Ace of Base"){
+          console.log("\n//-----------------------------SONG-INFO---------------------------//")
+          console.log("\nArtist: " + data.tracks.items[i].artists[0].name)
+          console.log("Song: " + data.tracks.items[i].name)
+          console.log("Link to song: " + data.tracks.items[i].external_urls.spotify)
+          console.log("Album: " + data.tracks.items[i].album.name + "\n")
+        }
+      }
+      
     })
   } else {
     songSearch();
