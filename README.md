@@ -23,9 +23,7 @@ Then you must use the following steps:
 
 ## GIF example of the app in use
 
-https://media.giphy.com/media/cIsjX7WYW5SnB50yAc/giphy.gif
-<iframe src="https://giphy.com/embed/cIsjX7WYW5SnB50yAc" width="480" height="286" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cIsjX7WYW5SnB50yAc">via GIPHY</a></p>
-
+![Alt Text](https://media.giphy.com/media/cIsjX7WYW5SnB50yAc/giphy.gif)
 
 ##Link to the deployed version of the app
 
