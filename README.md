@@ -1,15 +1,15 @@
-# liri-node-app
+# Liri-Node-App
 
-Liri is a node.js based app that uses the users input to search info of a song and/or movie that the user might be curious about.
-The user will follow a few steps in order to find their desired information all within the terminal/bash (command line).
+Liri is a node.js based app that uses the user's input to search info of a song and/or movie that the user might be curious about.
+The user will follow a few steps to find their desired information all within the terminal/bash (command line).
 
-## instruction
+## Instructions
 
-In order for the app to work you must "npm i" install all the dependencies in the package-lock.json file provided.
+For the app to work you must "npm i" install all the dependencies in the package-lock.json file provided.
 
 Then you must use the following steps:
 
-1. Type in 'node liri.js' into your comand line.
+1. Type in 'node liri.js' into your command line.
 
 2. Next type in what you want to search, movie info or song info.
 
