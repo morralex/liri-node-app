@@ -25,11 +25,11 @@ Then you must use the following steps:
 
 ![Alt Text](https://media.giphy.com/media/cIsjX7WYW5SnB50yAc/giphy.gif)
 
-##Link to the deployed version of the app
+## Link to the deployed version of the app
 
 https://morralex.github.io/liri-node-app/
 
-##Technoligies
+## Technologies
 
 * node.js
 * axios
